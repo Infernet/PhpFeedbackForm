@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Форма обратной связи</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="javascripts/main.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+            <div class="row">
+                <span id='test'></span>
+            </div>
+            <form id="feedbackForm" method="POST" action="javascript:void(null);" onsubmit="" class="col-md-6 m-md-auto border-dark p-2" novalidate>
+                <div class="form-row justify-content-center">
+                    <h3 class="font-weight-bold">Форма обратной связи</h3>
+                </div>
+                <div class="form-row">
+                        <div class="form-group col-lg-6 col-12">
+                                <label for="inputName" class="">Ваше имя</label>
+                                <input type="text" name="userName" class="form-control" id="feedbackName" aria-describedby="nameHelp" placeholder="Введите имя" required maxlength="100">
+                                <div class="invalid-feedback">Введите имя</div>
+                            </div>
+                            <div class="form-group col-lg-6 col-12">
+                                <label for="">Email</label>
+                                <input type="text" name="email" class="form-control" id="feedbackEmail" aria-describedby="emailHelp" placeholder="name@example.ru" required maxlength="100">
+                                <div class="invalid-feedback">Неверный email</div>
+                        </div>
+                </div>
+                <div class="form-row">
+                        <div class="form-group col-12">
+                                <label for="feedbackMessage">Сообщение</label>
+                                <textarea name="message" class="form-control" id="feedbackMessage" aria-describedby="textMessageHelp" placeholder="Введите текст..." required maxlength="1000" rows="10" ></textarea>
+                                <div class="invalid-feedback">Сообщение отсутствует</div>
+                            </div>
+                </div>
+                
+                <div class="form-row justify-content-center">
+                        <button type="submit" id="buttonFeedbackSubmit" class="bnt btn-primary p-2 rounded col-10">Отправить</button>
+                </div>
+            </form>
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,10 @@
+body{
+    background-color: gray;
+}
+form{
+    background-color: white;
+    border:1px gray solid;
+}
+textarea{
+    resize: none;
+}
