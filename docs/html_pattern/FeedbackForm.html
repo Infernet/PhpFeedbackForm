@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <style>
+        body{
+            background-color: bisque;
+        }
+        p{
+            size: 3%;
+            border:1px gray solid;
+            padding: 5%;
+        }
+        body > p:nth-child(4){
+            text-align:center;
+        }
+        h3{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h3>Добавлена новая запись в базу данных</h3>
+    <p>Имя: (%NAME%)</p>
+    <p>E-Mail: (%EMAIL%)</p>
+    <p>Сообщение:<br>
+        <i><strong>(%MESSAGE%)</strong></i>
+    </p>
+</body>
+</html>

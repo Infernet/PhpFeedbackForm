@@ -1,6 +1,8 @@
 <?php
 namespace Infernet\Database;
 
+use Infernet\Config;
+
 require_once "MyDataBase.php";
 /**
  * FeedbackDb расширенный класс для работы с feedbackdb
@@ -9,7 +11,7 @@ class FeedbackDb extends MyDataBase
 {
     public function __construct($host, $login, $password)
     {
-        parent::__construct($host, "feedbackdb", $login, $password);
+        parent::__construct($host, Config::DB_DATABASE_NAME, $login, $password);
     }
 
     public function insertFormData($name, $email, $message)

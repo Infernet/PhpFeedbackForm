@@ -1,5 +1,5 @@
 <?php
-namespace Handler;
+namespace Infernet\Handler;
 
 class Validator
 {

@@ -1,39 +1,66 @@
 $(document).ready(
     function(){
         $("#feedbackForm").on("submit",function(event){
-            event.preventDefault();
             var form=$('#feedbackForm'),
             inputName=$("#feedbackName"),
             inputEmail=$("#feedbackEmail"),
-            textAreaMsg=$("#feedbackMessage"),
-            submitButton=$("#buttonFeedbackSubmit");
-
+            textAreaMsg=$("#feedbackMessage");
+            event.preventDefault();
             $.ajax({
+                
                 type: "POST",
-                url: "../src/FormHandler.php",
+                url: "../src/handler.php",
                 data: form.serialize(),
-                //dataType:'json',
-                //contentType:'application/json',
                 success: function (response) {
-                    console.log(typeof response);
-                    console.log(response);
                     //обработка ответа
                     var result=JSON.parse(response);
-                    if(result['successful']){
-                        inputName.addClass('is-valid');
-                        inputEmail.addClass('is-valid');
-                        textAreaMsg.addClass('is-valid');
-                        alert('Форма успешно отправлена');
-                    }else if(result['duplicateRecord']){
-                        alert('Ошибка: попытка отправить две одинаковые формы');
-                    }else{
-                        (result['name'])? inputName.addClass('is-invalid'):inputName.addClass('is-valid');
-                        (result['email'])?inputEmail.addClass('is-invalid'):inputEmail.addClass('is-valid');
-                        (result['message'])?textAreaMsg.addClass('is-invalid'):textAreaMsg.addClass('is-valid');
-                        alert('Ошибка: проверьте правильность заполненных полей.');
+                    if(checkInput(result["nameValidStatus"],inputName) &&              
+                    checkInput(result["emailValidStatus"],inputEmail) &&
+                    checkInput(result["messageValidStatus"],textAreaMsg))
+                    {
+                            if(result["isDuplicateRecord"])
+                                alert('Ошибка: попытка сохранить существующую форму');
+                            if(result["insertToDbStatus"])
+                            {
+                                if(result["sendToEmailStatus"])
+                                    alert('Форма успешно сохранена');
+                                else
+                                    alert('Форма успешно сохранена в базе данных. Ошибка при отправке на почту');
+                            }
                     }
+                    else
+                        {
+                            alert('Ошибка: не правильно введенные данные');
+                        }
                 }
             });
         })
     }
 );
+
+
+function checkInput(nameResult,input){
+    if(input.hasClass("is-valid") || input.hasClass("is-invalid")){
+        if(input.hasClass("is-valid"))
+        {
+            if(!nameResult)
+            input.toggleClass("is-valid is-invalid");
+            return true;
+        }
+        else{
+            if(nameResult)
+            input.toggleClass("is-valid is-invalid");
+            return false;
+        }
+    }
+    else{
+        if(nameResult){
+            input.addClass("is-valid");
+            return true;
+        }
+        else{
+            input.addClass("is-invalid");
+            return false;
+        }
+    }
+}
